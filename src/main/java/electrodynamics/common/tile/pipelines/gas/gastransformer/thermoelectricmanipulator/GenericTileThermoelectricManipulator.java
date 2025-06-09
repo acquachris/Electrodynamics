@@ -199,12 +199,7 @@ public abstract class GenericTileThermoelectricManipulator extends GenericTileGa
             return new ManipulatorStatusCheckWrapper(false, ElectrodynamicsBlockStates.ManipulatorHeatingStatus.OFF, false);
         }
 
-        Fluid inputFluid = inputTank.getFluid().getFluid();
-        if(inputFluid instanceof FlowingFluid){
-            inputFluid = ((FlowingFluid) inputFluid).getSource();
-        }
-
-        evaporatedGas = VoltaicGases.MAPPED_GASSES.getOrDefault(inputFluid, VoltaicGases.EMPTY.get());
+        evaporatedGas = VoltaicGases.MAPPED_GASSES.getOrDefault(inputTank.getFluid().getFluid(), VoltaicGases.EMPTY.get());
 
         if (evaporatedGas.isEmpty()) {
             return new ManipulatorStatusCheckWrapper(false, ElectrodynamicsBlockStates.ManipulatorHeatingStatus.OFF, false);
